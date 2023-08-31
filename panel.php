@@ -8,12 +8,33 @@
 <body>
     <p><?php
     session_start();
-    echo "Bienvenido ". $_SESSION['name']; ?>
+
+    // Check if the session variable is set
+if(isset($_SESSION['name'])) {
+    echo "Bienvenido ". $_SESSION['name']; 
+    include "menu.php";
+    
+    
+    ?>
     </p>
     <ul>
-        <li>Inventario</li>
-        <li>Clientes</li>
+        <li><a href="inventario.php">Inventario</a></li>
+        <li><a href="clientes.php">Clientes</a></li>
         <li>Tickets</li>
+        <li>Productos</li>
+        <li>Servicios</li>
+        <li>Usuarios</li>
     </ul>
+    <p>
+        <a href="index.php">Cerrar Sesión.</a>
+    </p>
+
+
+
+
+
+<?php } else {
+    echo 'Tiene que iniciar sesión.';
+} ?>
 </body>
 </html>

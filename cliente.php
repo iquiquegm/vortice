@@ -36,6 +36,26 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 resultados";
 }
+
+
+$sql = "SELECT * FROM tickets WHERE ID_cliente='$id'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+
+    echo "<table><tr><th>Ticket</th><th>Fecha</th><th>Estado</th><th>Total</th></tr>";
+    
+    while($row = $result->fetch_assoc()) {
+        echo "<tr><td>". $row["ID"]. "</td><td>". $row["fecha"]. "</td><td>". $row["ID_estado"]. "</td><td>". $row["total"]. "</td>";
+        echo "<td><a href='#'><button>Seleccionar</button></a></td></tr>"; 
+       
+    }
+    echo "</table>";
+    
+} else {
+    echo "0 resultados";
+}
 $conn->close();
 
 

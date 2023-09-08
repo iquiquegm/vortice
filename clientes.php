@@ -41,7 +41,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-    echo "<table><tr><th>ID</th><th>Nombre</th><th>Teléfono</th><th>Correo</th><th>Como nos Encontró</th></tr>";
+    echo "<table><tr><th>ID</th><th>Nombre</th><th>Telefono</th><th>Correo</th><th>Como nos Encontro</th><th></th></tr>";
     while($row = $result->fetch_assoc()) {
         echo "<tr><td>" . $row["ID"]. "</td><td>" . $row["nombre"]. " ". $row["apellido"]. "</td><td>" . $row["telefono"]. "</td><td>" . $row["correo"]. "</td>";
         

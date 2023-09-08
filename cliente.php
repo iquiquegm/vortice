@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     
     while($row = $result->fetch_assoc()) {
-        echo "<h1>" . $row["nombre"]. " ". $row["apellido"]. "</h1>";
+        echo "<h1>" . $row["nombre"]. " ". $row["apellido"]. "</h1><br>";
         
        
     }

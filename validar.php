@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include "estilo.html";
+
 $host = "localhost";
 $dbUsername = "enrique";
 $dbPassword = "3nri9u3";

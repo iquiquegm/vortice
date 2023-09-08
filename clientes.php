@@ -4,6 +4,7 @@
     // Check if the session variable is set
 if(isset($_SESSION['name'])) {
     echo "Bienvenido ". $_SESSION['name'];
+    include "estilo.html";
     include "menu.php";
 
    

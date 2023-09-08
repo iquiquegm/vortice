@@ -20,17 +20,18 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Falla de conexión: " . $conn->connect_error);
 }
-$id=$_GET["cliente"];
+$id=$_GET["ticket"];
 
-$sql = "SELECT * FROM clientes WHERE ID='$id'";
+$sql = "SELECT * FROM tickets WHERE ID='$id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-    
+   
     while($row = $result->fetch_assoc()) {
-        echo "<h1>" . $row["nombre"]. " ". $row["apellido"]. "</h1>";
-        
+        echo "<h1>Ticket: " . $row["ID"]. "</h1>";
+        echo "<table><tr><th>Fecha</th><th>Total</th></tr>";
+        echo "<tr><td>". $row["fecha"]. "</td><td>$". $row["total"]. ".00</td></tr></table>";
        
     }
     
@@ -39,17 +40,17 @@ if ($result->num_rows > 0) {
 }
 
 
-$sql = "SELECT * FROM tickets WHERE ID_cliente='$id'";
+$sql = "SELECT * FROM trabajos WHERE ticket='$id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
 
-    echo "<table><tr><th>Ticket</th><th>Fecha</th><th>Estado</th><th>Total</th></tr>";
+    echo "<table><tr><th>ID</th><th>Concepto</th><th>Precio</th><th>Descripción</th></tr>";
     
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>". $row["ID"]. "</td><td>". $row["fecha"]. "</td><td>". $row["ID_estado"]. "</td><td>$". $row["total"]. ".00</td>";
-        echo "<td><a href='ticket.php?ticket=". $row['ID']. "'><button>Seleccionar</button></a></td></tr>"; 
+        echo "<tr><td>". $row["ID"]. "</td><td>". $row["concepto"]. "</td><td>$". $row["precio"]. ".00</td><td>". $row["descripcion"]. "</td>";
+        echo "<td><a href='#'><button>Editar</button></a></td></tr>"; 
        
     }
     echo "</table>";

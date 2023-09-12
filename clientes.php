@@ -7,7 +7,6 @@ if(isset($_SESSION['name'])) {
 
     include "cabeza.php";
     echo "<title>VORTICEX-3000 - CLIENTES</title>";
-    echo "<h1>Vorticex-3000 - Clientes</h1><br>";
    
 $servername = "localhost";
 $username = "enrique";

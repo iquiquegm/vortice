@@ -40,6 +40,7 @@ if($result->num_rows > 0) {
 
     // Set the session
     $_SESSION['name'] = $user['nombre'];
+    $_SESSION['usuario'] = $user['ID'];
      // Redirect to panel.php
      header('Location: panel.php');
      exit;

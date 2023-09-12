@@ -1,11 +1,8 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control</title>
-    <style>
+
+
     @font-face {
   font-family: 'wartext';
-  src: url("wartext.ttf") format('truetype');
+  src: url("/wartext.ttf") format('truetype');
        
 }
 body {
@@ -55,6 +52,35 @@ input {
     border-style: double;
 
 }
+
+.campotexto {
+    background-color: black;
+    color: turquoise;
+    border-color: turquoise;
+    font-family: wartext;
+    font-size: 1em;
+    text-transform: none;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    border-bottom: solid 1px;
+
+}
+
+.campotexto:active {
+    background-color: black;
+    color: turquoise;
+    border-color: turquoise;
+    font-family: wartext;
+    font-size: 1em;
+    text-transform: none;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    border-bottom: solid 1px;
+
+}
+
 button {
     text-transform: uppercase;
     padding-top: 10px;
@@ -72,5 +98,3 @@ h1 {
     padding-top: 2px;
     display: inline-block;
 }
-</style>
-</head>

@@ -3,10 +3,9 @@
 
     // Check if the session variable is set
 if(isset($_SESSION['name'])) {
-    echo "Bienvenido ". $_SESSION['name'];
-    include "estilo.html";
-    include "menu.php";
-
+    include "cabeza.php";
+    echo "<title>VORTICEX-3000 - CLIENTE</title>";
+    
    
 $servername = "localhost";
 $username = "enrique";
@@ -63,4 +62,5 @@ $conn->close();
 
  } else {
     echo 'Tiene que iniciar sesión.';
-} ?>
+}  include "pie.php";
+?>

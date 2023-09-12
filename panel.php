@@ -1,21 +1,18 @@
-
-<body>
-    <p><?php
-    include "estilo.html";
+<?php
     session_start();
 
     // Check if the session variable is set
 if(isset($_SESSION['name'])) {
-    echo "Bienvenido ". $_SESSION['name']; 
-    include "menu.php";
-    
-    
-    ?>
-    </p>
-    
+$pagina = basename(__FILE__, ".php");
 
-<?php } else {
+    include "cabeza.php";
+    echo "<title>VORTICEX-3000 - PANEL DE CONTROL</title>";
+    echo "<h1>Vorticex-3000 - Panel de Control</h1><br>";
+
+    
+    
+ } else {
     echo 'Tiene que iniciar sesión.';
-} ?>
-</body>
-</html>
+} 
+include "pie.php";
+?>

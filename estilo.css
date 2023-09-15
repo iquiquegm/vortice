@@ -2,16 +2,16 @@
 
     @font-face {
   font-family: 'wartext';
-  src: url("/wartext.ttf") format('truetype');
+  src: url("wartext.ttf") format('truetype');
        
 }
 body {
     background-color: black;
     color: turquoise;
-    font-family: wartext;
-    font-size: 24px;
+    font-family: arial;
+    font-size: 12px;
     text-shadow: 0,0,6,turquoise;
-    text-transform: none;
+    text-transform: uppercase;
 }
 button {
     background-color: black;
@@ -29,6 +29,13 @@ table {
     width: 100%;
 }
 
+tr:hover {
+    background-color: turquoise;
+    color: black;
+}
+
+
+
 th {
     text-align: left;
     text-transform: uppercase;
@@ -39,11 +46,15 @@ a {
     color: turquoise;
 }
 
+a:hover {
+    color: black;
+}
+
 input {
     background-color: black;
     color: turquoise;
     border-color: turquoise;
-    font-family: wartext;
+    font-family: orbitron;
     font-size: 1em;
     text-transform: none;
     padding: 5px;
@@ -57,7 +68,7 @@ input {
     background-color: black;
     color: turquoise;
     border-color: turquoise;
-    font-family: wartext;
+    font-family: orbitron;
     font-size: 1em;
     text-transform: none;
     padding: 5px;
@@ -71,7 +82,7 @@ input {
     background-color: black;
     color: turquoise;
     border-color: turquoise;
-    font-family: wartext;
+    font-family: orbitron;
     font-size: 1em;
     text-transform: none;
     padding: 5px;

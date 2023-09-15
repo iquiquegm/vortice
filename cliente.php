@@ -3,42 +3,31 @@
 
     // Check if the session variable is set
 if(isset($_SESSION['name'])) {
-    include "cabeza.php";
-    echo "<title>VORTICEX-3000 - CLIENTE</title>";
-    
-   
-$servername = "localhost";
-$username = "enrique";
-$password = "3nri9u3";
-$dbname = "vortice";
+    $pagina = basename(__FILE__, ".php");
+    $idCliente = $_GET["cliente"];
+    include "conexion.php";
+    $sql = "SELECT * FROM clientes WHERE ID='$idCliente'";
+    $result = $conn->query($sql);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Falla de conexión: " . $conn->connect_error);
-}
-$id=$_GET["cliente"];
-
-$sql = "SELECT * FROM clientes WHERE ID='$id'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
+    if ($result->num_rows > 0) {
     // output data of each row
     
     while($row = $result->fetch_assoc()) {
-        echo "<h1>" . $row["nombre"]. " ". $row["apellido"]. "</h1><br>";
-        
        
+        
+        $nombreCliente= $row["nombre"] . " " . $row["apellido"];  
     }
     
 } else {
     echo "0 resultados";
 }
 
+    $nombrePagina = $nombreCliente;
+    include "cabeza.php";
+    echo "CLIENTE: ". $nombreCliente . "<br>";
 
-$sql = "SELECT * FROM tickets WHERE ID_cliente='$id'";
+
+$sql = "SELECT * FROM tickets WHERE ID_cliente='$idCliente'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

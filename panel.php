@@ -11,15 +11,15 @@ if(isset($_SESSION['name'])) {
     $sql = "SELECT * FROM medios";
     $result = $conn->query($sql);
     
-    $datas = array(); // create an empty array
+    
     
     if ($result->num_rows > 0) {
-        // output data of each row
+        $medios = array();
         while($row = $result->fetch_assoc()) {
-            $data[] = $row; // add each row into the data array
+          $medios[$row["ID"]] = $row["descripcion"];
         }
-        $_SESSION['medios'] = $data;
-    } else {
+        $_SESSION["medios"] = $medios;
+      } else {
         echo "0 results";
     }
     
@@ -28,5 +28,6 @@ if(isset($_SESSION['name'])) {
 } else {
     echo 'Tiene que iniciar sesion.';
 } 
+
 include "pie.php";
 ?>

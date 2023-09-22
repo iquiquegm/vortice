@@ -1,22 +1,22 @@
 
-
     @font-face {
-  font-family: 'arial';
-  src: url("arial.ttf") format('truetype');
+  font-family: 'wartext';
+  src: url("wartext.ttf") format('truetype');
        
 }
+
 body {
     background-color: black;
     color: turquoise;
-    font-family: arial;
-    font-size: 12px;
+    font-family: wartext;
+    font-size: 26px;
     text-shadow: 0,0,6,turquoise;
     text-transform: uppercase;
 }
 button {
     background-color: black;
     color: turquoise;
-    font-family: arial;
+    font-family: wartext;
     font-size: 1em;
     border-color: turquoise;
     border: double 3px;
@@ -54,7 +54,7 @@ input {
     background-color: black;
     color: turquoise;
     border-color: turquoise;
-    font-family: arial;
+    font-family: wartext;
     font-size: 1em;
     text-transform: none;
     padding: 5px;
@@ -68,7 +68,7 @@ input {
     background-color: black;
     color: turquoise;
     border-color: turquoise;
-    font-family: arial;
+    font-family: wartext;
     font-size: 1em;
     text-transform: none;
     padding: 5px;
@@ -82,7 +82,7 @@ input {
     background-color: black;
     color: turquoise;
     border-color: turquoise;
-    font-family: arial;
+    font-family: wartext;
     font-size: 1em;
     text-transform: none;
     padding: 5px;

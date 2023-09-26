@@ -1,33 +1,23 @@
 <?php
-    session_start();
+session_start();
 
-    // Check if the session variable is set
-if(isset($_SESSION['name'])) {
-    $pagina = basename(__FILE__, ".php");
-    $nombrePagina = "Menu Principal";
-    include "cabeza.php";
-    include "conexion.php";
+if(!isset($_SESSION['user_id'])) { // check if the user_id session variable is not set
+  header("Location: index.php"); // redirect to index.php
+  exit(); // stop the script from executing further
+}
 
-    $sql = "SELECT * FROM medios";
-    $result = $conn->query($sql);
-    
-    
-    
-    if ($result->num_rows > 0) {
-        $medios = array();
-        while($row = $result->fetch_assoc()) {
-          $medios[$row["ID"]] = $row["descripcion"];
-        }
-        $_SESSION["medios"] = $medios;
-      } else {
-        echo "0 results";
-    }
-    
+if(isset($_SESSION['user_name'])) { // check if the user_name session variable is set
+  echo "¡Bienvenido, ". $_SESSION['user_name']. "!"; // display the user_name session variable
+}
 
+if(isset($_GET['logout']) && $_GET['logout'] == 'true') { // check if the logout link is used and the value of the 'logout' parameter is 'true'
+  session_unset(); // unset all session variables
+  session_destroy(); // destroy the session
+  header("Location: index.php"); // redirect to index.php
+  exit(); // stop the script from executing further
+}
 
-} else {
-    echo 'Tiene que iniciar sesion.';
-} 
+include "menu.php";
 
-include "pie.php";
+echo "<br><br><a href='?logout=true'>Cerrar Sesión</a>"; // display a link to logout and set the value of the 'logout' parameter to 'true'
 ?>

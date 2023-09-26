@@ -1,43 +1,33 @@
 <?php
-    session_start();
+// Start the session
+session_start();
 
-    // Check if the session variable is set
-if(isset($_SESSION['name'])) {
-    $pagina = basename(__FILE__, ".php");
-    $nombrePagina = "Clientes";
-    include "conexion.php";
-    include "cabeza.php";
-
-
-
-
-$medios = $_SESSION['medios'];
-
-
-
-
-$sql = "SELECT * FROM clientes ORDER BY apellido, nombre";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    echo "<table><tr><th>ID</th><th>Nombre</th><th>Telefono</th><th>Correo</th><th>Como nos Encontro</th></tr>";
-    while($row = $result->fetch_assoc()) {
-        echo "<tr><td>" . $row["ID"]. "<td><a href='cliente.php?cliente=". $row["ID"]. "'>" . $row["nombre"]. " ". $row["apellido"]. "</a></td><td>" . $row["telefono"]. "</td><td style='text-transform:lowercase;'>" . $row["correo"]. "</td>";
-
-        echo "<td>" . $medios[$row["medio"]]. "</td></tr>";
-       
+// Check if the session ID exists
+if (isset($_SESSION['user_id'])) {
+    // If the session ID exists, display a welcome message with the user's name, a link to clientenuevo.php, and a table with the user's name, last name, phone number, and email sorted by name and last name
+    echo "<h1>Bienvenido, ". $_SESSION['user_name']. " ". $_SESSION['apellido']. "!</h1>";
+    echo "<a href='clientenuevo.php'>Agregar nuevo cliente</a>";
+    echo "<table>";
+    echo "<tr><th>Nombre</th><th>Apellido</th><th>Teléfono</th><th>Correo</th><th>Como se enteró</th></tr>";
+    $servername = "localhost";
+    $username = "enrique";
+    $password = "3nri9u3";
+    $dbname = "vortice";
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    $sql = "SELECT * FROM clientes ORDER BY nombre, apellido";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<tr><td>". $row["nombre"]. "</td><td>". $row["apellido"]. "</td><td>". $row["telefono"]. "</td><td>". $row["correo"]. "</td></tr>". $medios[$row["correo"]][1]. "</td></tr>";
+        }
+    } else {
+        echo "0 results";
     }
-    echo"</table>";
+    $conn->close();
+    echo "</table>";
 } else {
-    echo "0 resultados";
+    // If the session ID does not exist, redirect to index.php
+    header("Location: index.php");
+    exit();
 }
-$conn->close();
-
-
-
- } else {
-    echo 'Tiene que iniciar sesión.';
-   
-}  include "pie.php";
 ?>

@@ -1,33 +1,57 @@
 <?php
-// Start the session
+// Set timezone
+date_default_timezone_set('America/Mexico_City');
+
+// Set language
+setlocale(LC_ALL, 'es_ES');
+
+// Database connection
+$mysqli = new mysqli('localhost', 'enrique', '3nri9u3', 'vortice');
+
+// Check connection
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Start session
 session_start();
 
-// Check if the session ID exists
 if (isset($_SESSION['user_id'])) {
-    // If the session ID exists, display a welcome message with the user's name, a link to clientenuevo.php, and a table with the user's name, last name, phone number, and email sorted by name and last name
-    echo "<h1>Bienvenido, ". $_SESSION['user_name']. " ". $_SESSION['apellido']. "!</h1>";
-    echo "<a href='clientenuevo.php'>Agregar nuevo cliente</a>";
-    echo "<table>";
-    echo "<tr><th>Nombre</th><th>Apellido</th><th>Teléfono</th><th>Correo</th><th>Como se enteró</th></tr>";
-    $servername = "localhost";
-    $username = "enrique";
-    $password = "3nri9u3";
-    $dbname = "vortice";
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    $sql = "SELECT * FROM clientes ORDER BY nombre, apellido";
-    $result = $conn->query($sql);
+    // Display welcome message
+    echo "Bienvenido, " . $_SESSION['user_name'];
+
+    // Import table medios into array
+    $result = $mysqli->query("SELECT * FROM medios");
+    $medios = $result->fetch_all(MYSQLI_ASSOC);
+    $_SESSION["medios"] = $medios;
+
+    // Display a link
+    echo "<a href='nuevocliente.php'>Nuevo Cliente</a>";
+
+    // Query to fetch data from clientes
+    $result = $mysqli->query("SELECT * FROM clientes ORDER BY nombre, apellido");
     if ($result->num_rows > 0) {
+        echo "<table>";
         while($row = $result->fetch_assoc()) {
-            echo "<tr><td>". $row["nombre"]. "</td><td>". $row["apellido"]. "</td><td>". $row["telefono"]. "</td><td>". $row["correo"]. "</td></tr>". $medios[$row["correo"]][1]. "</td></tr>";
+            $medioDescripcion = '';
+            foreach ($medios as $medio) {
+                if ($medio['ID'] == $row['medio']) {
+                    $medioDescripcion = $medio['descripcion'];
+                    break;
+                }
+            }
+            echo "<tr>";
+            echo "<td><a href='cliente.php?cliente=".$row['ID']."'>".$row['nombre']." ".$row['apellido']."</a></td>";
+            echo "<td>".$row['telefono']."</td>";
+            echo "<td>".$row['correo']."</td>";
+            echo "<td>".$medioDescripcion."</td>";
+            echo "</tr>";
         }
-    } else {
-        echo "0 results";
+        echo "</table>";
     }
-    $conn->close();
-    echo "</table>";
 } else {
-    // If the session ID does not exist, redirect to index.php
+    // Redirect to index.php
     header("Location: index.php");
-    exit();
+    exit;
 }
 ?>

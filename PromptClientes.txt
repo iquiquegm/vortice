@@ -11,7 +11,7 @@ If session id then (
     display welcome message to session Usuario
     import table medios into array $medios
     display a link to clientenuevo.php
-    display nombre, apellido, telefono, correo and (descripcion from table medios corresponding to the value in medios in table clientes) from table clientes sorted by name and apellido 
+    in a table display (nombre and apellido in one column as a link to cliente.php with ?cliente="client_id" in the URL, telefono, correo and in the last column display $medios("descripcion") that matches with the medios field)  from table clientes sorted by name and apellido 
 ) else (
     redirect to index.php
 )

@@ -1,0 +1,14 @@
+PHP
+Database type: MySQL
+Database Server: localhost
+Database Username: enrique
+Database Password: 3nri9u3
+Database Name: vortice
+Timezone: Mexico City
+Language: Spanish
+
+if POST[nombre] (
+    append content of POST variables nombre, apellido, telefono, correo and medio in table clientes 
+    display POST variables
+    return to clientes.php
+)

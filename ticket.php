@@ -2,8 +2,7 @@
     session_start();
 
     // Check if the session variable is set
-if(isset($_SESSION['name'])) {
-    include "cabeza.php";
+if(isset($_SESSION['user_id'])) {
     echo "<title>VORTICEX-3000 - TICKET</title>";
     
    
@@ -20,6 +19,16 @@ if ($conn->connect_error) {
     die("Falla de conexión: " . $conn->connect_error);
 }
 $id=$_GET["ticket"];
+
+
+$sql = "SELECT * FROM conceptos";
+$result = $conn->query($sql);
+
+$conceptos = array();
+while($row = $result->fetch_assoc()) {
+    $conceptos[] = $row;
+}
+$_SESSION["conceptos"] = $conceptos;
 
 $sql = "SELECT * FROM tickets WHERE ID='$id'";
 $result = $conn->query($sql);
@@ -48,7 +57,7 @@ if ($result->num_rows > 0) {
     echo "<table><tr><th>ID</th><th>Concepto</th><th>Precio</th><th>Descripcion</th><th></th></tr>";
     
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>". $row["ID"]. "</td><td>". $row["concepto"]. "</td><td>$". $row["precio"]. ".00</td><td>". $row["descripcion"]. "</td>";
+        echo "<tr><td>". $row["ID"]. "</td><td>". $conceptos[$row["concepto"] - 1]["nombre"]. "</td><td>$". $row["precio"]. ".00</td><td>". $row["descripcion"]. "</td>";
         echo "<td><a href='#'><button>Editar</button></a></td></tr>"; 
        
     }

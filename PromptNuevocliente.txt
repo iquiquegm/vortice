@@ -1,0 +1,21 @@
+PHP
+Database type: MySQL
+Database Server: localhost
+Database Username: enrique
+Database Password: 3nri9u3
+Database Name: vortice
+Timezone: Mexico City
+Language: Spanish
+
+If Session(user_id) (
+    display welcome message and user_name
+    import table medios into array $medios
+    create a form with (
+        input text fields "nombre", "apellido", "telefono","correo"
+        a select field with the option of $medios[descripcion]
+        a a submit button that post the data to agregacliente.php
+        a cancel button that returns to clientes.php
+    )
+) else (
+    returns to index.php
+)
